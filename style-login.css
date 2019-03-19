@@ -1,0 +1,33 @@
+@charset "UTF-8";
+/*
+Theme Name: WooStudy Case
+Theme URI: https://djament.com.br
+Author: Djament.co
+Author URI: https://djament.com.br/cv
+Description: A 5.1.1 WP Storefront child theme developed for customization studies purposes.
+Template: storefront
+Parent theme: storefront
+Requires at least: WordPress 5.1.1
+Version: 0.1
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: woostudy-case
+Tags: study
+*/
+
+/* Página Login WP - Início */
+	body.login div#login h1 {
+		font-family: 'Raleway', sans-serif;
+		text-transform: capitalize;
+		color: #000;
+	}
+	body.login div#login form#loginform p.submit input#wp-submit{
+		background-color: #229dd5 !important;
+	}
+	a.button.button-primary.button-hero {
+		background-color: #229dd5 !important;
+	}
+	#adminmenu div.wp-menu-name:active, .wp-has-current-submenu{
+		background-color: #229dd5 !important;
+	}
+/* Página Login WP - Final */
