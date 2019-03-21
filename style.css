@@ -46,3 +46,10 @@ Tags: study
 	## Captions
 	## Galleries
 --------------------------------------------------------------*/
+
+/* MINHA CONTA / MY ACCOUNT */
+.woocommerce-MyAccount-navigation ul li a::before{
+	float: left;
+	margin-left: 0;
+	margin-right: 0.5407911001em;
+}
