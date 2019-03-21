@@ -97,3 +97,77 @@ function get_template_directory_child() {
         $user_display_name = $user_info->first_name;
         echo '<h4>Seja bem-vindo ' . $user_display_name . '!</h4><img src="' . get_stylesheet_directory_uri() . '/images/logo-h-321x157.png)" title="WooStudy Case | WooStudy Case" alt""WooStudy Case" height="157" width="auto" style="height:157px;width:auto;margin:auto;padding:5% 9%;"/><p>Através desse painel é possível incluir páginas, posts e realizar uma série de outras edições de conteúdo.</p><p>Em caso de dúvidas, entre em contato com a Djament Comunicação através do email <a href="mailto:contato@djament.com.br" title="Enviar email para Djament.co">contato@djament.com.br</a>. Obrigado!</p>';
     }
+
+/* CHECKOUT */
+    /* Adição de Campos Customizados - Add Custom Fields */
+    /***
+        SETUP
+    ****/
+    function woostudycase_setup_fields() {
+        $fields = array(
+            array(
+                'key' => 'entrega_periodo',
+                'label' => 'Qual o melhor período para receber a mercadoria (matutino, vespertino ou noturno)?',
+                'placeholder' => '"Matutino"',
+                'required' => 'required',
+                'error' => 'Por favor, informe o melhor período para a entrega.'
+            ),
+            array(
+                'key' => 'entrega_horarios',
+                'label' => 'Qual(is) o(s) melhor(es) horário(s) para receber sua compra?',
+                'placeholder' => '"Entre 10 e 12 horas e após as 17 horas".',
+                'required' => 'required',
+                'error' => 'Por favor, conte-nos em que área sua empresa atua.'
+            )
+        );
+       
+       
+        return $fields;
+    }
+
+    /**
+ * Add custom fields to user / checkout
+ */
+add_action( 'woocommerce_after_order_notes', 'woostudycase_checkout_field' );
+ 
+function woostudycase_checkout_field( $checkout ) {
+    $fields = woostudycase_setup_fields();
+ 
+ 
+    if ( ! empty( $fields ) ) {
+       
+        echo '<div id=""><h2>Preferências de Recebimento</h2><small>Não garantimos que a entrega será feita dentro desse período e/nem horário - mas faremos o possível para respeitá-los. De toda forma, certifique-se de que haverá alguém responsável por receber sua compra. ;)</small>';
+       
+        foreach ($fields as $field) {
+            woocommerce_form_field(
+                $field['key'],
+                array(
+                    'type'          => 'text',
+                    'class'         => array('form-row-wide'),
+                    'label'         => __($field['label']),
+                    'placeholder'   => __($field['placeholder']),
+                ),
+                get_user_meta( get_current_user_id(), $field['key'] , true  )
+            );
+        }
+ 
+        echo '</div>';
+    }
+}
+/**
+ * Verification
+ */
+add_action('woocommerce_checkout_process', 'woostudycase_checkout_field_process');
+ 
+function woostudycase_checkout_field_process() {
+    $fields = woostudycase_setup_fields();
+   
+    if ( ! empty( $fields ) ) {
+        foreach($fields as $field) {
+            $key = $field['key'];
+            if ( ! $_POST[$key] ) {
+                wc_add_notice( __( $field['error'] ), 'error' );
+            }
+        }
+    }
+}
