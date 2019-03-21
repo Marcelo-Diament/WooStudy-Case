@@ -53,3 +53,10 @@ Tags: study
 	margin-left: 0;
 	margin-right: 0.5407911001em;
 }
+/* FINALIZAR COMPRA / CHECKOUT */
+@media (min-width: 768px){
+	#ship-to-different-address .woocommerce-form__input-checkbox {
+		position: relative;
+		margin-right: .3342343017em;
+	}
+}

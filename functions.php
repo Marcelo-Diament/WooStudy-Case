@@ -99,7 +99,124 @@ function get_template_directory_child() {
     }
 
 /* CHECKOUT */
-    /* Adição de Campos Customizados - Add Custom Fields */
+    /* Checagem de Endereço através do CEP - ViaCEP JQuery / JSON */
+
+
+
+    /* Reordenação dos campos de Checkout - início */
+
+        /* Reordenação dos campos de endereço - inicial */
+        add_filter( 'woocommerce_default_address_fields', 'woostudycase_reorder_checkout_fields' );
+        function woostudycase_reorder_checkout_fields( $fields ) {
+          // just assign priority less than 10
+          // $fields['first_name']['priority'] = 10;
+          // $fields['last_name']['priority'] = 20;
+          // $fields['company']['priority'] = 30;
+          $fields['postcode']['priority'] = 40;
+          $fields['country']['priority'] = 50;
+          $fields['state']['priority'] = 60;
+          $fields['city']['priority'] = 70;
+          $fields['address_1']['priority'] = 80;
+          $fields['address_2']['priority'] = 90;
+          return $fields;
+        }
+
+        /* Reordenação dos campos de endereço - inicial */
+        add_filter( 'woocommerce_billing_fields', 'woostudycase_move_checkout_email_field', 10, 1 );
+        function woostudycase_move_checkout_email_field( $address_fields ) {
+            $address_fields['billing_email']['priority'] = 35;
+            $address_fields['billing_phone']['priority'] = 36;
+            return $address_fields;
+        }
+
+        /* Reordenação dos campos de endereço - inicial */
+        // add_action( 'woocommerce_billing_fields', 'woostudycase_setup_checkout_cpf_field' );
+        function woostudycase_setup_checkout_cpf_field() {
+            $cadastro_fields = array(
+                array(
+                    'key' => 'cpf',
+                    'label' => 'CPF (sem pontos nem traços, apenas números)',
+                    'placeholder' => '12345678900',
+                    'required' => 'required',
+                    'error' => 'Por favor, informe o seu CPF.',
+                ),
+                array(
+                    'key' => 'cnpj',
+                    'label' => 'CNPJ (sem pontos, barra nem traço, apenas números)',
+                    'placeholder' => '99888777000166',
+                    'error' => 'Por favor, insira seu CNPJ.',
+                )
+            );
+            return $cadastro_fields;
+        }
+
+
+        add_filter( 'woocommerce_after_checkout_billing_form', 'woostudycase_billingCpf_field' );
+         
+        function woostudycase_billingCpf_field(  ) {
+            $cadastro_fields = woostudycase_setup_checkout_cpf_field();
+         
+         
+            if ( ! empty( $cadastro_fields ) ) {
+               
+                foreach ($cadastro_fields as $cadastro_field) {
+                    woocommerce_form_field(
+                        $field['key'],
+                        array(
+                            'type'          => 'text',
+                            'class'         => array('form-row-wide'),
+                            'label'         => __($cadastro_field['label']),
+                            'placeholder'   => __($cadastro_field['placeholder']),
+                            'required'   => __($cadastro_field['required']),
+                        ),
+                        get_user_meta( get_current_user_id(), $cadastro_field['key'] , true  )
+                    );
+                }
+            }
+        }
+
+
+       // add_filter( 'woocommerce_billing_fields', 'woostudycase_move_checkout_cpf_field', 10, 1 );
+        // function woostudycase_move_checkout_cpf_field( $cadastro_fields ) {
+        //     $cadastro_fields['cpf']['priority'] = 37;
+        //     $cadastro_fields['cnpj']['priority'] = 38;
+        //     return $cadastro_fields;
+        // }
+
+
+
+
+
+        // add_filter( 'woocommerce_billing_fields', 'woostudycase_move_checkout_cpf_field', 10, 1 );
+        // function woostudycase_move_checkout_cpf_field( $fieldsCpfCnpj ) {
+        //     $fieldsCpfCnpj = array(
+        //         array(
+        //             'key' => 'cpf',
+        //             'label' => 'CPF (sem pontos nem traços, apenas números)',
+        //             'placeholder' => '12345678900',
+        //             'required' => 'required',
+        //             'error' => 'Por favor, informe o seu CPF.',
+        //         ),
+        //         array(
+        //             'key' => 'cnpj',
+        //             'label' => 'CNPJ (sem pontos, barra nem traço, apenas números)',
+        //             'placeholder' => '99888777000166',
+        //             'error' => 'Por favor, insira seu CNPJ.',
+        //         )
+        //     );
+        //     $fieldsCpfCnpj['cpf']['priority'] = 37;
+        //     $fieldsCpfCnpj['cnpj']['priority'] = 38;
+        //     return $fieldsCpfCnpj;
+        // }
+
+    /* Reordenação dos campos de Checkout - final */
+
+
+
+
+
+
+    /* Adição de Campos Customizados - Add Custom Fields - Início */
     /***
         SETUP
     ****/
@@ -136,7 +253,7 @@ function woostudycase_checkout_field( $checkout ) {
  
     if ( ! empty( $fields ) ) {
        
-        echo '<div id=""><h2>Preferências de Recebimento</h2><small>Não garantimos que a entrega será feita dentro desse período e/nem horário - mas faremos o possível para respeitá-los. De toda forma, certifique-se de que haverá alguém responsável por receber sua compra. ;)</small>';
+        echo '<div id=""><h3>Preferências de Recebimento</h3><p>Não garantimos que a entrega será feita dentro desse período e/nem horário - mas faremos o possível para respeitá-los. De toda forma, certifique-se de que haverá alguém responsável por receber sua compra. ;)</p>';
        
         foreach ($fields as $field) {
             woocommerce_form_field(
