@@ -75,23 +75,23 @@ function get_template_directory_child() {
     add_action( 'login_enqueue_scripts', 'woostudycase_login_stylesheet' );
 
     /* Admin Panel Style */
-    function my_admin_theme_style() {
+    function woostudycase_admin_theme_style() {
         wp_enqueue_style('my-admin-style', get_stylesheet_directory_uri() . '/style-login.css');
     }
-    add_action('admin_enqueue_scripts', 'my_admin_theme_style');
+    add_action('admin_enqueue_scripts', 'woostudycase_admin_theme_style');
 
     /* Adicionando página ao Dashboard */
-    function add_custom_dashboard_widgets() { 
+    function add_woostudycase_dashboard_widgets() { 
         wp_add_dashboard_widget(
             'woostudycase_dashboard_widget', // Widget slug.
             'WooStudy Case', // Title.
-            'custom_dashboard_widget_content' // Display function.
+            'woostudycase_dashboard_widget_content' // Display function.
         );
     }
-    add_action( 'wp_dashboard_setup', 'add_custom_dashboard_widgets' );
+    add_action( 'wp_dashboard_setup', 'add_woostudycase_dashboard_widgets' );
 
     /* Create the function to output the contents of your Dashboard Widget. */
-    function custom_dashboard_widget_content() {
+    function woostudycase_dashboard_widget_content() {
         $woostudycase_id_user_logado = get_current_user_id();
         $user_info = get_userdata($woostudycase_id_user_logado);
         $user_display_name = $user_info->first_name;
