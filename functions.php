@@ -34,16 +34,16 @@ function get_template_directory_child() {
 
     /* Logo */
 
-    //$wccImgLogin = get_stylesheet_directory_uri() . '/images/logo-300x300.png);height:150px;';
+    //$wccImgLogin = get_stylesheet_directory_uri() . '/images/woostudycase-wp-login-logo-300-x-300.png);height:300px;';
     function woostudycase_login_logo() { ?>
         <style type="text/css">
             #login h1 a, .login h1 a {
-                background-image: url(<?php echo get_stylesheet_directory_uri() . '/images/logo-300x300.png);height:150px;'; ?>);
-                height:150px;
-                width:150px;
-                background-size: 150px 150px;
+                background-image: url(<?php echo get_stylesheet_directory_uri() . '/images/woostudycase-wp-login-logo-300-x-300.png);height:300px;'; ?>);
+                height:300px;
+                width:300px;
+                background-size: 300px 300px;
                 background-repeat: no-repeat;
-                padding-bottom: 30px;
+                margin-bottom: 0px;
             }
         </style>
     <?php }
@@ -63,7 +63,7 @@ function get_template_directory_child() {
 
     /* Mensagem */
     function woostudycase_login_message(){
-        return '<h1 style="text-align:center;">WooStudy Case</h1><br/><h3 style="text-align:center; font-weight:normal">for studies purpose | powered by <a href="https://djament.com.br" target="_blank">djament.co</a></h3>';
+        return '<h3 style="text-align:center; font-weight:normal;font-size:18px;color:#0071bc;"><strong>woocommerce complete guide</strong></h3></br><p style="text-align:right;">';
     }
     add_filter( 'login_message', 'woostudycase_login_message' );
 
@@ -95,7 +95,7 @@ function get_template_directory_child() {
         $woostudycase_id_user_logado = get_current_user_id();
         $user_info = get_userdata($woostudycase_id_user_logado);
         $user_display_name = $user_info->first_name;
-        echo '<h4>Seja bem-vindo ' . $user_display_name . '!</h4><img src="' . get_stylesheet_directory_uri() . '/images/logo-h-321x157.png)" title="WooStudy Case | WooStudy Case" alt""WooStudy Case" height="157" width="auto" style="height:157px;width:auto;margin:auto;padding:5% 9%;"/><p>Através desse painel é possível incluir páginas, posts e realizar uma série de outras edições de conteúdo.</p><p>Em caso de dúvidas, entre em contato com a Djament Comunicação através do email <a href="mailto:contato@djament.com.br" title="Enviar email para Djament.co">contato@djament.com.br</a>. Obrigado!</p>';
+        echo '<h4>Seja bem-vindo ' . $user_display_name . '!</h4><img src="' . get_stylesheet_directory_uri() . '/images/woostudycase-wp-dashboard-396x271.png)" title="WooStudy Case | WooStudy Case" alt""WooStudy Case" height="271" width="396" style="height: auto;width: 396px;min-width: 100%;margin: auto;max-width: 100%;"/><p>Através desse painel é possível incluir páginas, posts e realizar uma série de outras edições de conteúdo.</p><p>Em caso de dúvidas, entre em contato com a Djament Comunicação através do email <a href="mailto:contato@djament.com.br" title="Enviar email para Djament.co">contato@djament.com.br</a>. Obrigado!</p>';
     }
 
 /* CHECKOUT */
