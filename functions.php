@@ -99,6 +99,9 @@ function get_template_directory_child() {
     }
 
 /* CHECKOUT */
+
+
+
     /* Checagem de Endereço através do CEP - ViaCEP JQuery / JSON */
 
 
@@ -175,46 +178,7 @@ function get_template_directory_child() {
             }
         }
 
-
-       // add_filter( 'woocommerce_billing_fields', 'woostudycase_move_checkout_cpf_field', 10, 1 );
-        // function woostudycase_move_checkout_cpf_field( $cadastro_fields ) {
-        //     $cadastro_fields['cpf']['priority'] = 37;
-        //     $cadastro_fields['cnpj']['priority'] = 38;
-        //     return $cadastro_fields;
-        // }
-
-
-
-
-
-        // add_filter( 'woocommerce_billing_fields', 'woostudycase_move_checkout_cpf_field', 10, 1 );
-        // function woostudycase_move_checkout_cpf_field( $fieldsCpfCnpj ) {
-        //     $fieldsCpfCnpj = array(
-        //         array(
-        //             'key' => 'cpf',
-        //             'label' => 'CPF (sem pontos nem traços, apenas números)',
-        //             'placeholder' => '12345678900',
-        //             'required' => 'required',
-        //             'error' => 'Por favor, informe o seu CPF.',
-        //         ),
-        //         array(
-        //             'key' => 'cnpj',
-        //             'label' => 'CNPJ (sem pontos, barra nem traço, apenas números)',
-        //             'placeholder' => '99888777000166',
-        //             'error' => 'Por favor, insira seu CNPJ.',
-        //         )
-        //     );
-        //     $fieldsCpfCnpj['cpf']['priority'] = 37;
-        //     $fieldsCpfCnpj['cnpj']['priority'] = 38;
-        //     return $fieldsCpfCnpj;
-        // }
-
     /* Reordenação dos campos de Checkout - final */
-
-
-
-
-
 
     /* Adição de Campos Customizados - Add Custom Fields - Início */
     /***
