@@ -16,6 +16,9 @@ Tags: study
 */
 
 /* Página Login WP - Início */
+	body.login div#login {
+		padding: 5% 0 0;
+	}
 	body.login div#login h1 {
 		font-family: 'Raleway', sans-serif;
 		text-transform: capitalize;
