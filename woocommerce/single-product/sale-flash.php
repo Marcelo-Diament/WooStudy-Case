@@ -24,8 +24,12 @@ global $post, $product;
 
 ?>
 <?php if ( $product->is_on_sale() ) : ?>
-
-	<?php echo apply_filters( 'woocommerce_sale_flash', '<span class="onsale">' . esc_html__( 'Sale!', 'woocommerce' ) . '</span>', $post, $product ); ?>
+	<?php
+		$precoPromo = $product->get_sale_price();
+		$precoReal = $product->get_regular_price();
+		$descontoPct = round(100 - ( $precoReal / $precoPromo )) ;
+	?>
+	<?php echo apply_filters( 'woocommerce_sale_flash', '<span class="onsale">' . esc_html__( $descontoPct . '% OFF', 'woocommerce' ) . '</span>', $post, $product ); ?>
 
 <?php endif;
 
