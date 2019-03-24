@@ -84,7 +84,7 @@ function get_template_directory_child() {
     function add_woostudycase_dashboard_widgets() { 
         wp_add_dashboard_widget(
             'woostudycase_dashboard_widget', // Widget slug.
-            'WooStudy Case', // Title.
+            'WooStudy Case |<small> a Stofrefront child-theme</small>', // Title.
             'woostudycase_dashboard_widget_content' // Display function.
         );
     }
@@ -95,7 +95,20 @@ function get_template_directory_child() {
         $woostudycase_id_user_logado = get_current_user_id();
         $user_info = get_userdata($woostudycase_id_user_logado);
         $user_display_name = $user_info->first_name;
-        echo '<h4>Seja bem-vindo ' . $user_display_name . '!</h4><img src="' . get_stylesheet_directory_uri() . '/images/woostudycase-wp-dashboard-396x271.png)" title="WooStudy Case | WooStudy Case" alt""WooStudy Case" height="271" width="396" style="height: auto;width: 396px;min-width: 100%;margin: auto;max-width: 100%;"/><p>Através desse painel é possível incluir páginas, posts e realizar uma série de outras edições de conteúdo.</p><p>Em caso de dúvidas, entre em contato com a Djament Comunicação através do email <a href="mailto:contato@djament.com.br" title="Enviar email para Djament.co">contato@djament.com.br</a>. Obrigado!</p>';
+        echo '<h4>Seja bem-vindo ' . $user_display_name . '!</h4>
+        <img src="' . get_stylesheet_directory_uri() . '/images/woostudycase-wp-dashboard-396x271.png)" title="WooStudy Case | WooStudy Case" alt""WooStudy Case" height="271" width="396" style="height: auto;width: 396px;min-width: 100%;margin: auto;max-width: 100%;"/>
+        <p>Através desse painel é possível incluir páginas, posts e realizar uma série de outras edições de conteúdo.</p>
+        <ul style="list-style:none;">
+            <li class="woostudycase-dashboard-buttons"><a class="button button-primary" href="'. home_url() .'/wp-admin/admin.php/?page=wc-reports" target="_blank" title="Clique para verificar seus relatórios de vendas"><span style="margin: 5px 6px 4px 0;font-size:1rem;" class="dashicons dashicons-chart-area"></span>Ver Relatórios</a></li>
+            <li class="woostudycase-dashboard-buttons"><a class="button button-primary" href="'. home_url() .'/wp-admin/edit.php/?post_type=shop_order" target="_blank" title="Clique para verificar seus pedidos de venda"><span style="margin: 5px 6px 4px 0;font-size:1rem;" class="dashicons dashicons-cart"></span>Ver Pedidos</a></li>
+            <li class="woostudycase-dashboard-buttons"><a class="button button-primary" href="'. home_url() .'/wp-admin/post-new.php/?post_type=product" target="_blank" title="Clique para criar um novo produto"><span style="margin: 5px 6px 4px 0;font-size:1rem;" class="dashicons dashicons-megaphone"></span>Criar novo produto</a></li>
+            <li class="woostudycase-dashboard-buttons"><a class="button button-primary" href="'. home_url() .'/wp-admin/post-new.php" target="_blank" title="Clique para criar um novo post (ou artigo)"><span style="margin: 5px 6px 4px 0;font-size:1rem;" class="dashicons dashicons-admin-post"></span>Criar novo post</a></li>
+            <li class="woostudycase-dashboard-buttons"><a class="button button-primary" href="'. home_url() .'/wp-admin/upload.php" target="_blank" title="Clique para visualizar ou adicionar novos arquivos de mídia (imagens, vídeos, etc.)"><span style="margin: 5px 6px 4px 0;font-size:1rem;" class="dashicons dashicons-admin-media"></span>Ver/Adicionar mídia</a></li>
+            <li class="woostudycase-dashboard-buttons"><a class="button button-primary" href="'. home_url() .'/wp-admin/profile.php" target="_blank" title="Clique para ver ou editar seu perfil"><span style="margin: 5px 6px 4px 0;font-size:1rem;" class="dashicons dashicons-admin-users"></span>Ver perfil</a></li>
+            <li class="woostudycase-dashboard-buttons"><a class="button button-primary" href="'. home_url() .'/" target="_blank" title="Clique para acessar o site"><span style="margin: 5px 6px 4px 0;font-size:1rem;" class="dashicons dashicons-admin-site"></span>Ir para o site</a></li>
+            <li class="woostudycase-dashboard-buttons"><a class="button button-primary" href="'. home_url() .'/wp-login.php/?action=logout" target="_blank" title="Clique para fazer o logout do painel administrativo"><span style="margin: 5px 6px 4px 0;font-size:1rem;" class="dashicons dashicons-migrate"></span>Sair</a></li>
+        </ul>
+        <p>Em caso de dúvidas, entre em contato com a Djament Comunicação através do email <a href="mailto:contato@djament.com.br" title="Enviar email para Djament.co">contato@djament.com.br</a>. Obrigado!</p>';
     }
 
 /* CHECKOUT */
@@ -188,17 +201,17 @@ function get_template_directory_child() {
         $fields = array(
             array(
                 'key' => 'entrega_periodo',
-                'label' => 'Qual o melhor período para receber a mercadoria (matutino, vespertino ou noturno)?',
-                'placeholder' => '"Matutino"',
+                'label' => 'Qual seria o período de preferência para receber a mercadoria?',
+                'placeholder' => 'de manhã',
                 'required' => 'required',
                 'error' => 'Por favor, informe o melhor período para a entrega.'
             ),
             array(
                 'key' => 'entrega_horarios',
-                'label' => 'Qual(is) o(s) melhor(es) horário(s) para receber sua compra?',
-                'placeholder' => '"Entre 10 e 12 horas e após as 17 horas".',
+                'label' => 'Quais seriam os horários de preferência para receber sua compra?',
+                'placeholder' => 'entre 10 e 12 horas e após as 17 horas.',
                 'required' => 'required',
-                'error' => 'Por favor, conte-nos em que área sua empresa atua.'
+                'error' => 'Por favor, verifique o melhor horário para receber a entrega.'
             )
         );
        
@@ -209,7 +222,7 @@ function get_template_directory_child() {
     /**
  * Add custom fields to user / checkout
  */
-add_action( 'woocommerce_after_order_notes', 'woostudycase_checkout_field' );
+add_action( 'woocommerce_before_order_notes', 'woostudycase_checkout_field' );
  
 function woostudycase_checkout_field( $checkout ) {
     $fields = woostudycase_setup_fields();

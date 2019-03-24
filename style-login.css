@@ -24,13 +24,38 @@ Tags: study
 		text-transform: capitalize;
 		color: #000;
 	}
-	body.login div#login form#loginform p.submit input#wp-submit{
-		background-color: #229dd5 !important;
-	}
+	/*body.login div#login form#loginform p.submit input#wp-submit{
+		background-color: #0071bc !important;
+	}*/
 	a.button.button-primary.button-hero {
-		background-color: #229dd5 !important;
+		background-color: #0071bc !important;
 	}
 	#adminmenu div.wp-menu-name:active, .wp-has-current-submenu{
-		background-color: #229dd5 !important;
+		background-color: #0071bc !important;
 	}
+	.wp-core-ui .button-primary, body.login div#login form#loginform p.submit input#wp-submit{
+		background: #0071bc;
+		font-family: 'Raleway', sans-serif;
+		font-weight: 500;
+		transition: all 0.4s ease-in-out;
+		border-color: #3b92cc #005d9a #005d9a;
+		color: #fff;
+		box-shadow: 0 1px 0 #005d9a;
+		text-shadow: 0 -1px 1px #005d9a, 1px 0 1px #005d9a, 0 1px 1px #005d9a, -1px 0 1px #005d9a;
+	}
+	.wp-core-ui .button-primary:hover, body.login div#login form#loginform p.submit input#wp-submit:hover{
+		background: #a36597;
+		font-weight: 600;
+		border-color: #944c86 #7d3a70 #7d3a70;
+		color: #fff;
+		box-shadow: 0 1px 0 #7d3a70;
+		text-shadow: 0 -1px 1px #7d3a70, 1px 0 1px #7d3a70, 0 1px 1px #7d3a70, -1px 0 1px #7d3a70;
+	}
+
+	li.woostudycase-dashboard-buttons{
+		display: inline-flex;
+		margin: 6px 3px;
+	}
+
+
 /* Página Login WP - Final */
