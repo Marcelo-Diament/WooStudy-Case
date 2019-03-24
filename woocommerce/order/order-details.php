@@ -34,6 +34,9 @@ if ( $show_downloads ) {
 }
 ?>
 <section class="woocommerce-order-details">
+<!-- MAPEAMENTO DO ORDER DETAILS CUSTOMER > SECTION WOOCOMMERCE-ORDER-DETAILS - INÍCIO -->
+<?php echo '<h3 style="background-color:#f3f3f3;color:red">Início da abertura da 1a tag section, (linha 37), classe woocommerce-order-details.</h3><p style="background-color:#f3f3f3;color:red;">order-details.php</p>▽<hr/>'; ?>
+
 	<?php do_action( 'woocommerce_order_details_before_order_table', $order ); ?>
 
 	<h2 class="woocommerce-order-details__title"><?php _e( 'Order details', 'woocommerce' ); ?></h2>
@@ -89,6 +92,9 @@ if ( $show_downloads ) {
 	</table>
 
 	<?php do_action( 'woocommerce_order_details_after_order_table', $order ); ?>
+
+<?php echo '<h3 style="background-color:#f3f3f3;color:red">Final da 1a tag section, (linha 37), classe woocommerce-order-details.</h3><p style="background-color:#f3f3f3;color:red;">order-details.php</p>△<hr/>'; ?>
+<!-- MAPEAMENTO DO ORDER DETAILS CUSTOMER > SECTION WOOCOMMERCE-ORDER-DETAILS - INÍCIO -->
 </section>
 
 <?php

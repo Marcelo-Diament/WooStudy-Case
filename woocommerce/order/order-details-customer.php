@@ -21,10 +21,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 $show_shipping = ! wc_ship_to_billing_address_only() && $order->needs_shipping_address();
 ?>
 <section class="woocommerce-customer-details">
+<!-- MAPEAMENTO DO ORDER DETAILS CUSTOMER > SECTION WOOCOMMERCE-CUSTOMER-DETAILS - INÍCIO -->
+<?php echo '<h3 style="background-color:#f3f3f3;color:red">Início da abertura da 1a tag section, (linha 24), classe woocommerce-customer-details.</h3><p style="background-color:#f3f3f3;color:red;">order-details-customer.php</p><hr/>▽'; ?>
 
 	<?php if ( $show_shipping ) : ?>
 
 	<section class="woocommerce-columns woocommerce-columns--2 woocommerce-columns--addresses col2-set addresses">
+	<!-- MAPEAMENTO DO ORDER DETAILS CUSTOMER > SECTION ADRESSES - INÍCIO -->
+	<?php echo '<h3 style="background-color:#f3f3f3;color:red">Início da abertura da 2a tag section, (linha 31), classe addresses.</h3><p style="background-color:#f3f3f3;color:red;">order-details-customer.php</p>▽<hr/>'; ?>
+
 		<div class="woocommerce-column woocommerce-column--1 woocommerce-column--billing-address col-1">
 
 	<?php endif; ?>
@@ -34,13 +39,15 @@ $show_shipping = ! wc_ship_to_billing_address_only() && $order->needs_shipping_a
 	<address>
 		<?php echo wp_kses_post( $order->get_formatted_billing_address( __( 'N/A', 'woocommerce' ) ) ); ?>
 
-		<?php if ( $order->get_billing_phone() ) : ?>
-			<p class="woocommerce-customer-details--phone"><?php echo esc_html( $order->get_billing_phone() ); ?></p>
-		<?php endif; ?>
+		<?php if ( $order->get_billing_phone() ) { ?>
+			<p class="woocommerce-customer-details--phone"><b>Telefone:</b> <?php echo esc_html( $order->get_billing_phone() ); ?>
+		<?php }; ?>
 
-		<?php if ( $order->get_billing_email() ) : ?>
-			<p class="woocommerce-customer-details--email"><?php echo esc_html( $order->get_billing_email() ); ?></p>
-		<?php endif; ?>
+		<?php if ( $order->get_billing_email() ) { ?>
+			<!-- <p class="woocommerce-customer-details--email"> --></br><b>email:</b> <?php echo esc_html( $order->get_billing_email() ); ?></p>
+		<?php } else { ?>
+			</p>
+		<?php }; ?>
 	</address>
 
 	<?php if ( $show_shipping ) : ?>
@@ -54,10 +61,14 @@ $show_shipping = ! wc_ship_to_billing_address_only() && $order->needs_shipping_a
 			</address>
 		</div><!-- /.col-2 -->
 
+	<?php echo '<h3 style="background-color:#f3f3f3;color:red">Final da abertura da 2a tag section, (linha 31), classe addresses.</h3><p style="background-color:#f3f3f3;color:red;">order-details-customer.php</p>△<hr/>' ?>
+	<!-- MAPEAMENTO DO ORDER DETAILS CUSTOMER > SECTION ADRESSES - FINAL -->
 	</section><!-- /.col2-set -->
 
 	<?php endif; ?>
 
 	<?php do_action( 'woocommerce_order_details_after_customer_details', $order ); ?>
 
+<?php echo '<h3 style="background-color:#f3f3f3;color:red">Final da 1a tag section, (linha 69), classe woocommerce-customer-details.</h3><p style="background-color:#f3f3f3;color:red;">order-details-customer.php</p><hr/>△' ?>
+<!-- MAPEAMENTO DO ORDER DETAILS CUSTOMER > SECTION WOOCOMMERCE-CUSTOMER-DETAILS - FINAL -->
 </section>
