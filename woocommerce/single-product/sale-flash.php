@@ -27,7 +27,7 @@ global $post, $product;
 	<?php
 		$precoPromo = $product->get_sale_price();
 		$precoReal = $product->get_regular_price();
-		$descontoPct = floor( 100 * $precoPromo / $precoReal ) ;
+		$descontoPct = floor( 100 - 100 * $precoPromo / $precoReal ) ;
 	?>
 	<?php echo apply_filters( 'woocommerce_sale_flash', '<span class="onsale">' . esc_html__( $descontoPct . '% OFF', 'woocommerce' ) . '</span>', $post, $product ); ?>
 

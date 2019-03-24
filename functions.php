@@ -119,7 +119,7 @@ function get_template_directory_child() {
         $sku = $values['data']->get_sku();
         //$url = $values['data']->get_permalink( $product->ID );
         //$final='<a href="'. $url .'">SKU: '. $sku .'</a>';
-        return $title ?  sprintf("%s", $title . '</strong></br><small>Código: <b>' . $sku . '</b></small></div>' ) : $sku;
+        return $title ?  sprintf("%s", $title . '</strong></br><small style="margin-top: -3px; display: block;">Código: <b>' . $sku . '</b></small></div>' ) : $sku;
     }    
 
     /* Checagem de Endereço através do CEP - ViaCEP JQuery / JSON */
@@ -272,3 +272,25 @@ function woostudycase_checkout_field_process() {
         }
     }
 }
+
+// ARCHIVE PRODUCT
+
+add_action( 'woocommerce_before_shop_loop_item_title', 'woostudycase_add_sale_flash_product_card', 5 );
+     
+function woostudycase_add_sale_flash_product_card() { ?>
+    
+    <?php global $product;
+?>
+
+    <?php if ( $price_html = $product->get_price_html() ) : ?>
+        <?php if ( $product->is_on_sale() ) { ?>
+            <?php
+                $precoPromo = $product->get_sale_price();
+                $precoReal = $product->get_regular_price();
+                $descontoPct = floor( 100 - 100 * $precoPromo / $precoReal ) ;
+            ?>
+            <span style="background-color: #229dd5;color: #fff;padding:3px;margin:2px;border-radius:3px;right: 0;position: absolute;top: 0;"><?php echo $descontoPct . '% OFF' ; ?></span>
+        <?php }; ?>
+    <?php endif; ?>
+
+<?php };
