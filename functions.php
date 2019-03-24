@@ -113,7 +113,14 @@ function get_template_directory_child() {
 
 /* CHECKOUT */
 
-
+    /* Inclusao da SKU no Order Review do Checkout */
+    add_filter( 'woocommerce_cart_item_name', 'add_sku_in_cart', 20, 3);
+        function add_sku_in_cart( $title, $values, $cart_item_key ) {
+        $sku = $values['data']->get_sku();
+        //$url = $values['data']->get_permalink( $product->ID );
+        //$final='<a href="'. $url .'">SKU: '. $sku .'</a>';
+        return $title ?  sprintf("%s", $title . '</strong></br><small>Código: <b>' . $sku . '</b></small></div>' ) : $sku;
+    }    
 
     /* Checagem de Endereço através do CEP - ViaCEP JQuery / JSON */
 
